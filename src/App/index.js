@@ -1,3 +1,12 @@
 import React from "react";
+import Router from "./Router";
+import BaseStyle from "./Styles/BaseStyle";
+import Normalize from "./Styles/Normalize";
 
-export default () => <h1>Hello World</h1>;
+export default () => (
+    <React.Fragment>
+        <BaseStyle />
+        <Normalize />
+        <Router />
+    </React.Fragment>
+);
