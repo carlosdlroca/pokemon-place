@@ -1,8 +1,12 @@
 import React from "react";
 import { List, ListItem } from "./Styles";
 
-export default ({ items, render }) => (
+export default ({ items, renderListItemChildren }) => (
     <List>
-        {items.map((item, itemIndex) => render(item, itemIndex, ListItem))}
+        {items.map((item, itemIndex) => (
+            <ListItem key={itemIndex}>
+                {renderListItemChildren(item, itemIndex)}
+            </ListItem>
+        ))}
     </List>
 );
