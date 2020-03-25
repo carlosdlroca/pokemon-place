@@ -8,22 +8,22 @@ export default () => {
 
     useEffect(() => {
         const setPokemonFromApi = async () => {
-            const pokemon = await getPokemon();
+            const pokemon = await getPokemon(4);
             setPokemonArr(pokemon);
         };
         setPokemonFromApi();
     }, []);
 
-    const renderPokemon = (pokemon, itemIndex, ListComponent) => (
-        <ListComponent key={itemIndex}>
+    const renderPokemon = (pokemon, itemIndex) => (
+        <React.Fragment>
             {pokemon.name}
             <img src={pokemon.sprite} alt={`${pokemon.name}`} />
-        </ListComponent>
+        </React.Fragment>
     );
 
     return (
         <PokemonPage>
-            <List render={renderPokemon} items={pokemonArr} />
+            <List renderListItemChildren={renderPokemon} items={pokemonArr} />
         </PokemonPage>
     );
 };
