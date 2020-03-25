@@ -6,7 +6,7 @@ import {
     Redirect
 } from "react-router-dom";
 
-import { PokemonPage } from "../Pages/Styles";
+import PokemonPage from "../Pages/Pokemon";
 
 export default () => (
     <Router>
