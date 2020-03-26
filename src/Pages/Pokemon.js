@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { PokemonPage } from "./Styles";
 import List from "../components/List";
 import { getPokemon } from "../api/pokeAPI";
+import { Link } from "react-router-dom";
 
 export default () => {
     const [pokemonArr, setPokemonArr] = useState([]);
 
     useEffect(() => {
         const setPokemonFromApi = async () => {
-            const pokemon = await getPokemon(4);
+            const pokemon = await getPokemon(1);
             setPokemonArr(pokemon);
         };
         setPokemonFromApi();
@@ -16,8 +17,8 @@ export default () => {
 
     const renderPokemon = (pokemon, itemIndex) => (
         <React.Fragment>
-            {pokemon.name}
             <img src={pokemon.sprite} alt={`${pokemon.name}`} />
+            <Link to={`/pokemon/${pokemon.id}`}>{pokemon.name}</Link>
         </React.Fragment>
     );
 
