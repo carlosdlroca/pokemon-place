@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PokemonPage } from "./Styles";
 import List from "../components/List";
-import { getPokemon } from "../api/pokeAPI";
+import { getPokemonByGeneration } from "../api/pokeAPI";
 import { Link } from "react-router-dom";
 
 export default () => {
@@ -9,7 +9,7 @@ export default () => {
 
     useEffect(() => {
         const setPokemonFromApi = async () => {
-            const pokemon = await getPokemon(1);
+            const pokemon = await getPokemonByGeneration(1);
             setPokemonArr(pokemon);
         };
         setPokemonFromApi();
@@ -21,6 +21,10 @@ export default () => {
             <Link to={`/pokemon/${pokemon.id}`}>{pokemon.name}</Link>
         </React.Fragment>
     );
+
+    if (!pokemonArr.length) {
+        return <h1>Loading...</h1>;
+    }
 
     return (
         <PokemonPage>
