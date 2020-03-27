@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import PokemonPage from "../Pages/Pokemon";
+import SinglePokemon from "../Pages/SinglePokemon";
 
 export default () => (
     <Router>
@@ -15,7 +16,7 @@ export default () => (
                 <Redirect to='/pokemon' />
             </Route>
             <Route path='/pokemon/:pokemon_id'>
-                <h1> THis is for a specific pokemon</h1>
+                <SinglePokemon />
             </Route>
             <Route path='/pokemon'>
                 <PokemonPage />
