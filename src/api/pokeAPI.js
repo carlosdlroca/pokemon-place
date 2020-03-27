@@ -12,7 +12,7 @@ const generations = {
     7: { offset: 721, limit: 86 }
 };
 
-export async function getPokemon(genNum = 1) {
+export async function getPokemonByGeneration(genNum = 1) {
     const { offset, limit } = generations[genNum];
     const res = await fetch(`${BASE_URL}?offset=${offset}&limit=${limit}`);
     const data = await res.json();
@@ -20,4 +20,20 @@ export async function getPokemon(genNum = 1) {
         var id = idx + offset + 1;
         return { ...pokemon, id, sprite: `${SPRITE_URL}${id}.png` };
     });
+}
+
+export async function getPokemon(id) {
+    const res = await fetch(`${BASE_URL}/${id}`);
+    const data = await res.json();
+    return {
+        id: data.id,
+        name: data.name,
+        abilities: data.abilities,
+        location_area_encounters: data.location_area_encounters,
+        species: data.species,
+        sprites: data.sprites,
+        stats: data.stats,
+        types: data.type,
+        weight: data.weight
+    };
 }
