@@ -31,7 +31,7 @@ export async function getPokemon(id) {
         abilities: data.abilities,
         location_area_encounters: data.location_area_encounters,
         species: data.species,
-        sprites: data.sprites,
+        sprites: { ...data.sprites },
         stats: data.stats,
         types: data.type,
         weight: data.weight
