@@ -34,6 +34,7 @@ export async function getPokemon(id) {
         sprites: { ...data.sprites },
         stats: data.stats,
         types: data.type,
-        weight: data.weight
+        weight: data.weight,
+        moves: data.moves
     };
 }
