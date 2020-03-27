@@ -29,6 +29,10 @@ export default () => {
                 alt='Back of the pokemon'
             />
             <img src={pokemon.sprites["back_default"]} alt='' />
+            <h2>Moves:</h2>
+            {pokemon.moves.map(m => (
+                <p>{m.move.name}</p>
+            ))}
         </PokemonPage>
     );
 };
