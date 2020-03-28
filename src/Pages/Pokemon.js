@@ -1,29 +1,18 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { PokemonPage } from "./Styles";
 import List from "../components/List";
 import Select from "../components/Select";
 
-import { StoreContext } from "../store";
-import { SET_POKEMON, SET_SELECTED_GENERATION } from "../store/actionTypes";
-
-import { getPokemonByGeneration } from "../api/pokeAPI";
+import useFetchPokemonByGen from "../hooks/useFetchPokemonByGen";
+import { SET_SELECTED_GENERATION } from "../store/actionTypes";
 
 export default () => {
-    const [state, dispatch] = useContext(StoreContext);
-
-    useEffect(() => {
-        const setPokemonFromApi = async () => {
-            const pokemon = await getPokemonByGeneration(
-                state.selectedGeneration
-            );
-            dispatch({ type: SET_POKEMON, pokemon });
-        };
-        setPokemonFromApi();
-    }, [dispatch, state.selectedGeneration]);
+    const [{ pokemon, selectedGeneration }, dispatch] = useFetchPokemonByGen();
 
     const renderPokemon = (pokemon, itemIndex) => (
         <React.Fragment>
+            <p>#{pokemon.id}</p>
             <img src={pokemon.sprite} alt={`${pokemon.name}`} />
             <Link to={`/pokemon/${pokemon.id}`}>{pokemon.name}</Link>
         </React.Fragment>
@@ -37,7 +26,7 @@ export default () => {
         });
     };
 
-    if (!state.pokemon.length) {
+    if (!pokemon.length) {
         return <h1>Loading...</h1>;
     }
 
@@ -47,12 +36,9 @@ export default () => {
                 numOfShifts={7}
                 valuePrefix='Gen '
                 onChange={onChange}
-                selectedOption={state.selectedGeneration}
+                selectedOption={selectedGeneration}
             />
-            <List
-                renderListItemChildren={renderPokemon}
-                items={state.pokemon}
-            />
+            <List renderListItemChildren={renderPokemon} items={pokemon} />
         </PokemonPage>
     );
 };
