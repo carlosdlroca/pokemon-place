@@ -6,7 +6,8 @@ const Select = ({
     numOfShifts,
     valuesArray,
     includeZero,
-    valuePrefix
+    valuePrefix,
+    selectedOption
 }) => {
     const getValue = index => {
         if (
@@ -28,6 +29,7 @@ const Select = ({
                     value={value}
                     key={idx}
                     className={`Option Option-${idx}`}
+                    selected={selectedOption == value}
                 >
                     {`${valuePrefix}${value}`}
                 </option>
