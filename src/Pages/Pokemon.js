@@ -1,22 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { PokemonPage } from "./Styles";
 import List from "../components/List";
 import Select from "../components/Select";
 
+import { StoreContext } from "../store";
+import { SET_POKEMON, SET_SELECTED_GENERATION } from "../store/actionTypes";
+
 import { getPokemonByGeneration } from "../api/pokeAPI";
 
 export default () => {
-    const [pokemonArr, setPokemonArr] = useState([]);
-    const [generation, setGeneration] = useState(1);
+    const [state, dispatch] = useContext(StoreContext);
 
     useEffect(() => {
         const setPokemonFromApi = async () => {
-            const pokemon = await getPokemonByGeneration(generation);
-            setPokemonArr(pokemon);
+            const pokemon = await getPokemonByGeneration(
+                state.selectedGeneration
+            );
+            dispatch({ type: SET_POKEMON, pokemon });
         };
         setPokemonFromApi();
-    }, [generation]);
+    }, [dispatch, state.selectedGeneration]);
 
     const renderPokemon = (pokemon, itemIndex) => (
         <React.Fragment>
@@ -27,18 +31,28 @@ export default () => {
 
     const onChange = e => {
         const { value } = e.target;
-        setGeneration(Number(value));
+        dispatch({
+            type: SET_SELECTED_GENERATION,
+            selectedGeneration: Number(value)
+        });
     };
 
-    if (!pokemonArr.length) {
+    if (!state.pokemon.length) {
         return <h1>Loading...</h1>;
     }
 
     return (
         <PokemonPage>
-            <h3>Select a generation: </h3>
-            <Select numOfShifts={7} valuePrefix='Gen ' onChange={onChange} />
-            <List renderListItemChildren={renderPokemon} items={pokemonArr} />
+            <Select
+                numOfShifts={7}
+                valuePrefix='Gen '
+                onChange={onChange}
+                selectedOption={state.selectedGeneration}
+            />
+            <List
+                renderListItemChildren={renderPokemon}
+                items={state.pokemon}
+            />
         </PokemonPage>
     );
 };

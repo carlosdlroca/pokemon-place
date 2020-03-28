@@ -31,7 +31,7 @@ export default () => {
             <img src={pokemon.sprites["back_default"]} alt='' />
             <h2>Moves:</h2>
             {pokemon.moves.map(m => (
-                <p>{m.move.name}</p>
+                <p key={m.move.name}>{m.move.name}</p>
             ))}
         </PokemonPage>
     );
