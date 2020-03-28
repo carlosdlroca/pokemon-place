@@ -2,11 +2,15 @@ import styled from "styled-components";
 
 export const List = styled.ul`
     display: grid;
-    grid-template-columns: repeat(1fr, 4);
+    grid-template-columns: repeat(1fr, 3);
     grid-gap: 2rem;
     list-style: none;
     width: 60%;
     margin: 1rem auto;
+
+    @media only screen and (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
 `;
 
 export const ListItem = styled.li`
@@ -23,7 +27,21 @@ export const ListItem = styled.li`
         width: var(--img-size);
     }
 
-    &:nth-of-type(4n) {
-        grid-column: 4 / span 1;
+    &:nth-of-type(3n) {
+        grid-column: 3 / span 1;
+    }
+
+    @media only screen and (max-width: 768px) {
+        grid-column: 1 / -1;
+
+        &:nth-of-type(3n) {
+            grid-column: 1 / -1;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        img {
+            --img-size: 75px;
+        }
     }
 `;
