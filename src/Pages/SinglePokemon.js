@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { PokemonPage } from "./Styles";
-import { useParams } from "react-router-dom";
-import { getPokemon } from "../api/pokeAPI";
+import useFetchPokemonById from "../hooks/useFetchPokemonById";
 
 export default () => {
-    const { pokemon_id } = useParams();
-
-    const [pokemon, setPokemon] = useState(null);
-
-    useEffect(() => {
-        const pokemonApi = async id => {
-            const pokemonObject = await getPokemon(id);
-            setPokemon(pokemonObject);
-        };
-        pokemonApi(pokemon_id);
-    }, [pokemon_id]);
+    const pokemon = useFetchPokemonById();
 
     if (!pokemon) {
         return <h1>Loading...</h1>;

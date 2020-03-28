@@ -26,7 +26,7 @@ export async function getPokemonByGeneration(genNum = 1) {
     }
 }
 
-export async function getPokemon(id) {
+export async function getPokemonById(id) {
     try {
         const res = await fetch(`${BASE_URL}/${id}`);
         const data = await res.json();
@@ -38,7 +38,7 @@ export async function getPokemon(id) {
             species: data.species,
             sprites: { ...data.sprites },
             stats: data.stats,
-            types: data.type,
+            types: extractTypes(data.types),
             weight: data.weight,
             moves: data.moves
         };
@@ -46,3 +46,11 @@ export async function getPokemon(id) {
         console.error({ err });
     }
 }
+
+const extractTypes = typesArray => {
+    return typesArray.map(({ type, slot }) => ({
+        name: type.name,
+        url: type.url,
+        slot
+    }));
+};
