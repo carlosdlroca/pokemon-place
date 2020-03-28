@@ -29,14 +29,17 @@ const Select = ({
                     value={value}
                     key={idx}
                     className={`Option Option-${idx}`}
-                    selected={selectedOption == value}
                 >
                     {`${valuePrefix}${value}`}
                 </option>
             );
         });
 
-    return <StyledSelect onChange={onChange}>{options}</StyledSelect>;
+    return (
+        <StyledSelect onChange={onChange} defaultValue={selectedOption}>
+            {options}
+        </StyledSelect>
+    );
 };
 
 Select.defaultProps = {
