@@ -8,6 +8,7 @@ import {
 
 import PokemonPage from "../Pages/Pokemon";
 import SinglePokemon from "../Pages/SinglePokemon";
+import NoMatch from "../Pages/NoMatch";
 
 export default () => (
     <Router>
@@ -20,6 +21,9 @@ export default () => (
             </Route>
             <Route path='/pokemon'>
                 <PokemonPage />
+            </Route>
+            <Route path='*'>
+                <NoMatch />
             </Route>
         </Switch>
     </Router>
