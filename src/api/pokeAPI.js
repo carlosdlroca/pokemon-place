@@ -1,3 +1,4 @@
+import { flattenObject } from "../utils/flat";
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const SPRITE_URL =
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
@@ -29,28 +30,21 @@ export async function getPokemonByGeneration(genNum = 1) {
 export async function getPokemonById(id) {
     try {
         const res = await fetch(`${BASE_URL}/${id}`);
-        const data = await res.json();
-        return {
-            id: data.id,
-            name: data.name,
-            abilities: data.abilities,
-            location_area_encounters: data.location_area_encounters,
-            species: data.species,
-            sprites: { ...data.sprites },
-            stats: data.stats,
-            types: extractTypes(data.types),
-            weight: data.weight,
-            moves: data.moves
-        };
+        const pokemon = await res.json();
+        const keysToExtract = [
+            "id",
+            "name",
+            "location_area_encounters",
+            "species",
+            "weight",
+            "sprites",
+            { stats: ["base_stat", "effort", { stat: ["name", "url"] }] },
+            { moves: [{ move: ["name", "url"] }] },
+            { abilities: [{ ability: ["name", "url"] }] },
+            { types: ["slot", { type: ["name", "url"] }] }
+        ];
+        return flattenObject(pokemon, keysToExtract);
     } catch (err) {
         console.error({ err });
     }
 }
-
-const extractTypes = typesArray => {
-    return typesArray.map(({ type, slot }) => ({
-        name: type.name,
-        url: type.url,
-        slot
-    }));
-};
