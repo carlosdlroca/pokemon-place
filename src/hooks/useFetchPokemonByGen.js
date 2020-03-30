@@ -11,12 +11,16 @@ export default () => {
             const pokemon = await getPokemonByGeneration(
                 state.selectedGeneration
             );
-            dispatch({ type: SET_POKEMON, pokemon });
+            dispatch({
+                type: SET_POKEMON,
+                pokemon,
+                prevGeneration: state.selectedGeneration
+            });
         };
-        if (state.pokemon.length <= 0) {
+        if (state.prevGeneration != state.selectedGeneration) {
             setPokemonFromApi();
         }
-    }, [dispatch, state.selectedGeneration, state.pokemon.length]);
+    }, [dispatch, state.selectedGeneration, state.prevGeneration]);
 
     return [state, dispatch];
 };

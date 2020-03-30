@@ -9,21 +9,24 @@ import {
 const initialState = {
     pokemon: [],
     selectedGeneration: 1,
+    prevGeneration: -1,
     selectedPokemon: null
 };
 
 const reducer = (state, action) => {
     switch (action.type) {
         case SET_POKEMON:
-            const { pokemon } = action;
+            const { pokemon, prevGeneration } = action;
             return {
                 ...state,
-                pokemon
+                pokemon,
+                prevGeneration
             };
         case SET_SELECTED_GENERATION:
             const { selectedGeneration } = action;
             return {
                 ...state,
+                prevGeneration: state.selectedGeneration,
                 selectedGeneration
             };
         case SET_SELECTED_POKEMON:
