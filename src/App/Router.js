@@ -6,6 +6,7 @@ import {
     Redirect
 } from "react-router-dom";
 
+import ScrollToTopOnMount from "./ScrollToTopOnMount";
 import PokemonPage from "../Pages/Pokemon";
 import SinglePokemon from "../Pages/SinglePokemon";
 import NoMatch from "../Pages/NoMatch";
@@ -17,6 +18,7 @@ export default () => (
                 <Redirect to='/pokemon' />
             </Route>
             <Route path='/pokemon/:pokemon_id'>
+                <ScrollToTopOnMount />
                 <SinglePokemon />
             </Route>
             <Route path='/pokemon'>
