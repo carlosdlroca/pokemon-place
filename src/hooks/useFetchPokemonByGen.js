@@ -13,8 +13,10 @@ export default () => {
             );
             dispatch({ type: SET_POKEMON, pokemon });
         };
-        setPokemonFromApi();
-    }, [dispatch, state.selectedGeneration]);
+        if (state.pokemon.length <= 0) {
+            setPokemonFromApi();
+        }
+    }, [dispatch, state.selectedGeneration, state.pokemon.length]);
 
     return [state, dispatch];
 };

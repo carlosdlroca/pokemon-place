@@ -12,7 +12,9 @@ export default id => {
             const selectedPokemon = await getPokemonById(id);
             dispatch({ type: SET_SELECTED_POKEMON, selectedPokemon });
         };
-        pokemonApi(pokemon_id);
+        if (!state.selectedPokemon || state.selectedPokemon.id != pokemon_id) {
+            pokemonApi(pokemon_id);
+        }
     }, [dispatch, pokemon_id]);
 
     return state.selectedPokemon;
