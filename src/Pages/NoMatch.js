@@ -1,5 +1,6 @@
 import React from "react";
 import { NoMatch } from "./Styles";
+import { Link } from "react-router-dom";
 import ShakingBoxes from "../components/ShakingBoxes";
 
 export default () => (
@@ -10,7 +11,7 @@ export default () => (
             backgroundBack='black'
             size={250}
         >
-            Go Back!
+            <Link to='/pokemon'>Go Back!</Link>
         </ShakingBoxes>
     </NoMatch>
 );
