@@ -15,7 +15,7 @@ export default id => {
         if (!state.selectedPokemon || state.selectedPokemon.id != pokemon_id) {
             pokemonApi(pokemon_id);
         }
-    }, [dispatch, pokemon_id]);
+    }, [dispatch, pokemon_id, state.selectedPokemon]);
 
     return state.selectedPokemon;
 };
