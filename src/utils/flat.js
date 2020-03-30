@@ -7,9 +7,7 @@ export const flattenArray = (arrayToFlatten, keysToExtract) => {
 export const flattenObject = (objectToFlatten, keysToExtract) => {
     let flattedObj = {};
     keysToExtract.forEach(key => {
-        if (typeof key == "string" && key in objectToFlatten) {
-            flattedObj[key] = objectToFlatten[key];
-        } else {
+        if (typeof key == "object") {
             const deepObject = key;
             const deepKey = Object.keys(deepObject)[0];
             const deepKeysToExtract = deepObject[deepKey];
@@ -28,6 +26,9 @@ export const flattenObject = (objectToFlatten, keysToExtract) => {
                 };
             }
         }
+        if (typeof key == "string" && key in objectToFlatten) {
+            flattedObj[key] = objectToFlatten[key];
+        } else return;
     });
     return flattedObj;
 };
