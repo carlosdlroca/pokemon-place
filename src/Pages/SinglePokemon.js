@@ -1,5 +1,5 @@
 import React from "react";
-import { PokemonPage } from "./Styles";
+import { PokemonPage, Type } from "./Styles";
 import useFetchPokemonById from "../hooks/useFetchPokemonById";
 
 export default () => {
@@ -18,6 +18,13 @@ export default () => {
                 alt='Back of the pokemon'
             />
             <img src={pokemon.sprites["back_default"]} alt='' />
+            <div className='typed'>
+                {pokemon.types.map(type => (
+                    <Type key={type.name} type={type.name}>
+                        {type.name}
+                    </Type>
+                ))}
+            </div>
             <h2>Moves:</h2>
             {pokemon.moves.map(move => (
                 <p key={move.name}>{move.name}</p>

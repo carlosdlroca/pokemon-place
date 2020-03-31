@@ -15,3 +15,26 @@ export const NoMatch = styled(Page)`
     background: #222;
     color: white;
 `;
+
+export const Type = styled.div`
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: ${props => props.theme.types[props.type]};
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+
+    --border-radius: 20rem;
+
+    &:first-child {
+        border-radius: var(--border-radius) 0 0 var(--border-radius);
+    }
+    &:last-child {
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+
+    &:only-child {
+        border-radius: var(--border-radius);
+    }
+`;
