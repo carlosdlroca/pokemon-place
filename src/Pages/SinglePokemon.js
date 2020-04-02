@@ -1,5 +1,5 @@
 import React from "react";
-import { PokemonPage, Type } from "./Styles";
+import { SinglePokemonPage, Type } from "./Styles";
 import useFetchPokemonById from "../hooks/useFetchPokemonById";
 
 export default () => {
@@ -10,7 +10,7 @@ export default () => {
     }
 
     return (
-        <PokemonPage>
+        <SinglePokemonPage>
             {pokemon.name}
             <p>weight: {pokemon.weight}</p>
             <img
@@ -25,10 +25,18 @@ export default () => {
                     </Type>
                 ))}
             </div>
+            <div className='stats'>
+                {pokemon.stats.map(stat => (
+                    <p className='stat'>
+                        <span className='BaseStat'>{stat.base_stat}</span>
+                        <span className='StatName'>{stat.name}</span>
+                    </p>
+                ))}
+            </div>
             <h2>Moves:</h2>
             {pokemon.moves.map(move => (
                 <p key={move.name}>{move.name}</p>
             ))}
-        </PokemonPage>
+        </SinglePokemonPage>
     );
 };

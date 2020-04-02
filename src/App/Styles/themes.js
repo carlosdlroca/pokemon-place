@@ -1,4 +1,9 @@
 export default {
+    color: {
+        main: "#d7385e",
+        dark: "#252525",
+        textLight: "#ddd"
+    },
     types: {
         normal: "#A8A77A",
         fire: "#EE8130",

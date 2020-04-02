@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export default styled.nav`
-    background-color: #dd2c14;
+    background-color: ${props => props.theme.color.main};
     padding: 1.5rem 3rem;
 `;
 

@@ -11,11 +11,17 @@ export default () => {
     const [{ pokemon, selectedGeneration }, dispatch] = useFetchPokemonByGen();
 
     const renderPokemon = (pokemon, itemIndex) => (
-        <React.Fragment>
-            <p>#{pokemon.id}</p>
-            <img src={pokemon.sprite} alt={`${pokemon.name}`} />
-            <Link to={`/pokemon/${pokemon.id}`}>{pokemon.name}</Link>
-        </React.Fragment>
+        <div className='PokemonItem'>
+            <span className='PokemonId'>#{pokemon.id}</span>
+            <img
+                className='PokemonImage'
+                src={pokemon.sprite}
+                alt={`${pokemon.name}`}
+            />
+            <Link className='PokemonLink' to={`/pokemon/${pokemon.id}`}>
+                {pokemon.name}
+            </Link>
+        </div>
     );
 
     const onChange = e => {
