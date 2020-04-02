@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const List = styled.ul`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     grid-gap: 2rem;
     grid-row-gap: 4rem;
     width: 60%;
