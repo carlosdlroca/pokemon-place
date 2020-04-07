@@ -1,5 +1,5 @@
 import { flattenObject } from "../utils/flat";
-const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
+const BASE_URL = "https://pokeapi.co/api/v2";
 const SPRITE_URL =
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
@@ -10,13 +10,15 @@ const generations = {
     4: { offset: 386, limit: 108 },
     5: { offset: 494, limit: 155 },
     6: { offset: 649, limit: 72 },
-    7: { offset: 721, limit: 86 }
+    7: { offset: 721, limit: 86 },
 };
 
 export async function getPokemonByGeneration(genNum = 1) {
     const { offset, limit } = generations[genNum];
     try {
-        const res = await fetch(`${BASE_URL}?offset=${offset}&limit=${limit}`);
+        const res = await fetch(
+            `${BASE_URL}/pokemon?offset=${offset}&limit=${limit}`
+        );
         const data = await res.json();
         return data.results.map((pokemon, idx) => {
             var id = idx + offset + 1;
@@ -29,7 +31,7 @@ export async function getPokemonByGeneration(genNum = 1) {
 
 export async function getPokemonById(id) {
     try {
-        const res = await fetch(`${BASE_URL}/${id}`);
+        const res = await fetch(`${BASE_URL}/pokemon/${id}`);
         const pokemon = await res.json();
         const keysToExtract = [
             "id",
@@ -41,9 +43,31 @@ export async function getPokemonById(id) {
             { stats: ["base_stat", "effort", { stat: ["name", "url"] }] },
             { moves: [{ move: ["name", "url"] }] },
             { abilities: [{ ability: ["name", "url"] }] },
-            { types: ["slot", { type: ["name", "url"] }] }
+            { types: ["slot", { type: ["name", "url"] }] },
         ];
-        return flattenObject(pokemon, keysToExtract);
+        const species = await getSpeciesById(id);
+        return { ...flattenObject(pokemon, keysToExtract), ...species };
+    } catch (err) {
+        console.error({ err });
+    }
+}
+
+export async function getSpeciesById(id) {
+    try {
+        const res = await fetch(`${BASE_URL}/pokemon-species/${id}`);
+        const species_info = await res.json();
+        const keysToExtract = [
+            "base_happiness",
+            "capture_rate",
+            "color",
+            "egg_groups",
+            "evolution_chain",
+            "flavor_text_entries",
+            "generation",
+            "habitat",
+            "varieties",
+        ];
+        return flattenObject(species_info, keysToExtract);
     } catch (err) {
         console.error({ err });
     }
