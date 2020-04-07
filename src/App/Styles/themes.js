@@ -1,8 +1,8 @@
 export default {
     color: {
-        main: "#d7385e",
+        main: "#D7385E",
         dark: "#252525",
-        textLight: "#ddd"
+        textLight: "#DDD",
     },
     types: {
         normal: "#A8A77A",
@@ -22,6 +22,19 @@ export default {
         dragon: "#6F35FC",
         dark: "#705746",
         steel: "#B7B7CE",
-        fairy: "#D685AD"
-    }
+        fairy: "#D685AD",
+    },
+    speciesColor: {
+        black: "#323232",
+        blue: "#617BE3",
+        brown: "#8B5742",
+        gray: "#E0DFDB",
+        green: "#004445",
+        pink: "#FFB0CD",
+        purple: "#7D26CD",
+        red: "#DA2D2D",
+        white: "#F6F6F6",
+        yellow: "#FBEC5D",
+    },
 };
+// white: #f1fcfc
