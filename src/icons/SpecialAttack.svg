@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="44" height="44">
+  <title>Bullet</title>
+  <path d="M17.5 21a.5.5 0 00.5-.5V9.5a.5.5 0 00-.5-.5H6.5a.5.5 0 00-.5.5v11a.5.5 0 00.5.5.5.5 0 010 1 .5.5 0 00-.5.5v1a.5.5 0 00.5.5h11a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5.5.5 0 010-1zM7.15 8h9.69a.5.5 0 00.49-.57C16.8 3.74 14.79 0 12 0S7.2 3.74 6.66 7.43A.5.5 0 007.15 8z" class=" ns-fill-0" fill="#303c42"/>
+
+</svg>
