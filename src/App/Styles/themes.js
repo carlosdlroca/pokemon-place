@@ -1,8 +1,9 @@
 export default {
     color: {
         main: "#D7385E",
-        dark: "#252525",
+        bgDark: "#252525",
         textLight: "#DDD",
+        textDark: "hsl(234, 12%, 34%)",
     },
     types: {
         normal: "#A8A77A",
