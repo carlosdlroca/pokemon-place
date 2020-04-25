@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Page = styled.main`
-    min-height: 100vh;
+    min-height: calc(100vh - 4.5rem);
 `;
 
 export const PokemonPage = styled(Page)`
@@ -21,7 +21,7 @@ export const PokemonPage = styled(Page)`
 
         .PokemonId {
             font-size: 2rem;
-            color: ${props => props.theme.color.textLight};
+            color: ${(props) => props.theme.color.textLight};
         }
 
         .PokemonImage {
@@ -36,7 +36,7 @@ export const PokemonPage = styled(Page)`
             align-items: center;
             justify-content: center;
 
-            color: ${props => props.theme.color.main};
+            color: ${(props) => props.theme.color.main};
             padding: 1rem 0.4rem;
             position: relative;
             margin-bottom: 1rem;
@@ -49,13 +49,13 @@ export const PokemonPage = styled(Page)`
                 width: 0;
                 height: 100%;
                 position: absolute;
-                background-color: ${props => props.theme.color.main};
+                background-color: ${(props) => props.theme.color.main};
                 transition: width var(--hover-time) 0.1s ease-out;
                 z-index: -1;
             }
 
             &:hover {
-                color: ${props => props.theme.color.textLight};
+                color: ${(props) => props.theme.color.textLight};
                 &::before {
                     width: 100%;
                 }
@@ -68,14 +68,14 @@ export const PokemonPage = styled(Page)`
             top: 100%;
             height: 100%;
             width: 100%;
-            background: ${props => props.theme.color.textLight};
+            background: ${(props) => props.theme.color.textLight};
             z-index: -1;
             transition: top var(--hover-time) ease;
         }
 
         &:hover {
             .PokemonId {
-                color: ${props => props.theme.color.dark};
+                color: ${(props) => props.theme.color.dark};
             }
             &::before {
                 top: 0;
@@ -84,37 +84,10 @@ export const PokemonPage = styled(Page)`
     }
 `;
 
-export const SinglePokemonPage = styled(Page)`
-    color: ${props => props.theme.color.textLight};
-`;
-
 export const NoMatch = styled(Page)`
     display: flex;
     justify-content: center;
     align-items: center;
     background: #222;
     color: white;
-`;
-
-export const Type = styled.div`
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: ${props => props.theme.types[props.type]};
-    color: white;
-    font-size: 1.4rem;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
-
-    --border-radius: 20rem;
-
-    &:first-child {
-        border-radius: var(--border-radius) 0 0 var(--border-radius);
-    }
-    &:last-child {
-        border-radius: 0 var(--border-radius) var(--border-radius) 0;
-    }
-
-    &:only-child {
-        border-radius: var(--border-radius);
-    }
 `;
