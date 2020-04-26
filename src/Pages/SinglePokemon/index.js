@@ -31,7 +31,6 @@ export default () => {
                 <span className='StatNumber'>{base_stat}</span>
             </div>
         ));
-    console.log(pokemon);
     return (
         <Page>
             <PokemonName pokemonColor={pokemon.color.name}>
