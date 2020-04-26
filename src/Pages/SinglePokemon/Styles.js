@@ -56,6 +56,7 @@ export var PokemonStats = styled.section`
         align-items: center;
         margin-bottom: 2rem;
         .StatIcon {
+            transform: scale(0.8);
         }
 
         .StatName {
@@ -65,10 +66,47 @@ export var PokemonStats = styled.section`
 
         .StatNumber {
             font-size: 3rem;
+            color: ${getPokemonColor};
         }
+    }
+`;
+
+export var PokemonTypes = styled.section`
+    display: flex;
+    margin: 2rem 0 3rem;
+`;
+
+export var PokemonType = styled.span`
+    background-color: ${getTypeColor};
+    color: white;
+    font-size: 3rem;
+    padding: 1rem 4rem;
+
+    --border-radius: 4rem;
+    &:first-child {
+        border-radius: var(--border-radius) 0 0 var(--border-radius);
+    }
+    &:last-child {
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+    &:only-child {
+        border-radius: var(--border-radius);
+    }
+`;
+
+export var PokemonEntry = styled.p`
+    font-size: 2rem;
+    line-height: 1.7;
+    padding: 1rem;
+    span {
+        font-weight: bolder;
     }
 `;
 
 function getPokemonColor(props) {
     return props.theme.speciesColor[props.pokemonColor];
+}
+
+function getTypeColor(props) {
+    return props.theme.types[props.type];
 }
