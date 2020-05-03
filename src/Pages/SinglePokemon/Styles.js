@@ -98,8 +98,13 @@ export var PokemonEntry = styled.p`
     font-size: 2rem;
     line-height: 1.7;
     padding: 1rem;
+
     span {
         font-weight: bolder;
+    }
+
+    @media only screen and (min-width: 1024px) {
+        width: 50%;
     }
 `;
 
