@@ -8,6 +8,14 @@ export const List = styled.ul`
     width: 60%;
     margin: 1rem auto;
     list-style: none;
+
+    @media only screen and (max-width: 1200px) {
+        width: 80%;
+    }
+
+    @media only screen and (max-width: 768px) {
+        width: 96%;
+    }
 `;
 
 export const ListItem = styled.li`
