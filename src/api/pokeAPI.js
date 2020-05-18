@@ -64,7 +64,6 @@ export async function getSpeciesById(id) {
             "evolution_chain",
             "flavor_text_entries",
             "generation",
-            "habitat",
             "varieties",
         ];
         return flattenObject(species_info, keysToExtract);
