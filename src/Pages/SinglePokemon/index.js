@@ -45,9 +45,6 @@ export default () => {
                 {getEnglishText(pokemon.flavor_text_entries).flavor_text}
             </PokemonEntry>
 
-            <span className='Habitat'>
-                Habitat {splitStr(pokemon.habitat.name)}
-            </span>
             <PokemonTypes>
                 {pokemon.types.map(({ name }) => (
                     <PokemonType key={name} type={name}>
