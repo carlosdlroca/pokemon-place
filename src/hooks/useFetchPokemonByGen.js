@@ -14,10 +14,10 @@ export default () => {
             dispatch({
                 type: SET_POKEMON,
                 pokemon,
-                prevGeneration: state.selectedGeneration
+                prevGeneration: state.selectedGeneration,
             });
         };
-        if (state.prevGeneration != state.selectedGeneration) {
+        if (state.prevGeneration !== state.selectedGeneration) {
             setPokemonFromApi();
         }
     }, [dispatch, state.selectedGeneration, state.prevGeneration]);

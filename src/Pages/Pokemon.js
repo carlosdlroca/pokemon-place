@@ -18,17 +18,18 @@ export default () => {
                 src={pokemon.sprite}
                 alt={`${pokemon.name}`}
             />
+            <span style={{ color: "white" }}>{pokemon.name}</span>
             <Link className='PokemonLink' to={`/pokemon/${pokemon.id}`}>
-                {pokemon.name}
+                view stats
             </Link>
         </div>
     );
 
-    const onChange = e => {
+    const onChange = (e) => {
         const { value } = e.target;
         dispatch({
             type: SET_SELECTED_GENERATION,
-            selectedGeneration: Number(value)
+            selectedGeneration: Number(value),
         });
     };
 

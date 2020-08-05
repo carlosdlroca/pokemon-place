@@ -7,12 +7,13 @@ const Select = ({
     valuesArray,
     includeZero,
     valuePrefix,
-    selectedOption
+    selectedOption,
 }) => {
-    const getValue = index => {
+    const getValue = (index) => {
         if (
+            //eslint-disable-next-line
             valuesArray == null ||
-            valuesArray.length == 0 ||
+            valuesArray.length === 0 ||
             valuesArray.length - 1 < index
         ) {
             return includeZero ? index : index + 1;
@@ -45,7 +46,7 @@ const Select = ({
 Select.defaultProps = {
     valuesArray: null,
     includeZero: false,
-    valuePrefix: ""
+    valuePrefix: "",
 };
 
 export default Select;
